@@ -1,0 +1,92 @@
+{#{% extends 'main/layoute.html' %}#}
+{##}
+{#{% block title %}#}
+{#    <title>Новостная страница</title>#}
+{#{% endblock %}#}
+{##}
+{#{% block content %}#}
+{#<div class="container mt-4">#}
+{#    <h1 class="mb-4">Новостная страница</h1>#}
+{##}
+{#    {% if news %}#}
+{#        <div class="row">#}
+{#            {% for new in news %}#}
+{#            <div class="col-md-6 mb-4">#}
+{#                <div class="card shadow-sm">#}
+{#                    <div class="card-body">#}
+{#                        <h5 class="card-title">{{ new.title }}</h5>#}
+{#                        <div class="d-flex justify-content-between mb-2 text-muted small">#}
+{#                            <span>Автор: {{ new.author }}</span>#}
+{#                            <span>{{ new.pub_date|date:"d.m.Y" }}</span>#}
+{#                        </div>#}
+{#                        <p class="card-text">{{ new.short_description }}</p>#}
+{#                        <div class="d-flex justify-content-between align-items-center">#}
+{#                            <a href="#" class="btn btn-outline-secondary">Подробнее</a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#    {% else %}#}
+{#        <div class="alert alert-info">Новостей пока нет</div>#}
+{#    {% endif %}#}
+{#</div>#}
+{#{% endblock %}#}
+
+{% extends 'main/layoute.html' %}
+
+{% block title %}
+    <title>Новостная страница</title>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Новостная страница</h1>
+
+    {% if news %}
+        <div class="row">
+            {% for new in news %}
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ new.title }}</h5>
+                        <div class="d-flex justify-content-between mb-2 text-muted small">
+                            <span>Автор: {{ new.author }}</span>
+                            <span>{{ new.pub_date|date:"d.m.Y" }}</span>
+                        </div>
+                        <p class="card-text">{{ new.short_description }}</p>
+
+                        <!-- Кнопка и скрытый контент -->
+                        <div class="d-flex justify-content-between align-items-center">
+                            <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseNews{{ new.id }}" aria-expanded="false"
+                                    aria-controls="collapseNews{{ new.id }}">
+                                Подробнее
+                            </button>
+                        </div>
+
+                        <div class="collapse mt-3" id="collapseNews{{ new.id }}">
+                            <div class="card card-body bg-light">
+                                <p class="card-text">{{ new.text }}</p>
+                                <button class="btn btn-sm btn-outline-secondary mt-2" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapseNews{{ new.id }}"
+                                        aria-expanded="false" aria-controls="collapseNews{{ new.id }}">
+                                    Свернуть
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info">Новостей пока нет</div>
+    {% endif %}
+</div>
+
+<!-- Подключение JS для работы collapse -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}
+

@@ -1,0 +1,17 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.aside {
+    min-height: 100vh;
+    border-right: 1px solid #dee2e6;
+}
+
+.card {
+    border-radius: 15px;
+}
+
+.btn-outline-dark:hover {
+    background-color: #343a40;
+    color: white !important;
+}
