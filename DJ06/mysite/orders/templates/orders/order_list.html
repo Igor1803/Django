@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Список заказов</title>
+</head>
+<body>
+    <h1>Список заказов</h1>
+    <ul>
+        {% for order in orders %}
+            <li>{{ order.product }} — {{ order.customer }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
